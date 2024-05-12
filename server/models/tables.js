@@ -1,0 +1,66 @@
+const createTablesQueries = [
+  `CREATE TABLE CUSTOMER(
+    Cus_ID VARCHAR(10) NOT NULL,
+    Cus_Name VARCHAR(10),
+    Cus_Email VARCHAR(30),
+    Phone_No CHAR(10),
+    PRIMARY KEY(Cus_ID)
+  )`,
+  `CREATE TABLE SUPPLIER(
+    Supplier_ID VARCHAR(10) NOT NULL,
+    Name VARCHAR(15) NOT NULL,
+    Phone_No CHAR(11) NOT NULL,
+    Suppling_item VARCHAR(255),
+    PRIMARY KEY(Supplier_ID)
+  )`,
+  `CREATE TABLE RESTAURANT(
+    Res_ID VARCHAR(10) NOT NULL,
+    Name VARCHAR(15) NOT NULL,
+    Address VARCHAR(25),
+    Phone_No CHAR(10) NOT NULL,
+    Supplier_ID VARCHAR(10),
+    PRIMARY KEY(Res_ID),
+    FOREIGN KEY(Supplier_ID) REFERENCES SUPPLIER(Supplier_ID)
+  )`,
+  `CREATE TABLE TABLES(
+    Table_ID VARCHAR(10) NOT NULL,
+    Capacity INT DEFAULT 4,
+    Status INT DEFAULT 1,
+    Res_ID VARCHAR(10),
+    PRIMARY KEY(Table_ID),
+    FOREIGN KEY(Res_ID) REFERENCES RESTAURANT(Res_ID)
+  )`,
+  `CREATE TABLE EMPLOYEE(
+    Emp_ID VARCHAR(10) NOT NULL,
+    Name VARCHAR(50) NOT NULL,
+    Salary INT,
+    Phone_No CHAR(11) NOT NULL,
+    Job_Name VARCHAR(50),
+    PRIMARY KEY(Emp_ID),
+    Res_ID VARCHAR(10),
+    FOREIGN KEY(Res_ID) REFERENCES RESTAURANT(Res_ID)
+  )`,
+  `CREATE TABLE ORDERS(
+    Order_ID VARCHAR(10) NOT NULL,
+    Order_DateTime DATETIME DEFAULT CURRENT_TIMESTAMP,
+    Total INT,
+    Cus_ID VARCHAR(10),
+    Table_ID VARCHAR(10),
+    Emp_ID VARCHAR(10),
+    PRIMARY KEY(Order_ID),
+    FOREIGN KEY(Cus_ID) REFERENCES CUSTOMER(Cus_ID),
+    FOREIGN KEY(Table_ID) REFERENCES TABLES(Table_ID),
+    FOREIGN KEY(Emp_ID) REFERENCES EMPLOYEE(Emp_ID),
+  )`,
+  `CREATE TABLE MENU(
+    Item_Name VARCHAR(20) NOT NULL,
+    Description VARCHAR(40),
+    Price INT NOT NULL,
+    Order_ID VARCHAR(10),
+    PRIMARY KEY(Item_Name, Order_ID),
+    FOREIGN KEY(Order_ID) REFERENCES ORDERS(Order_ID)
+  )`,
+];
+
+
+module.exports = createTablesQueries;
