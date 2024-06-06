@@ -1,0 +1,171 @@
+@import "./variables.scss";
+
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+.container-st {
+  margin: auto;
+  width: 90%;
+}
+
+.loading {
+  animation: rotate 1.5s linear infinite;
+}
+
+button.disabled {
+  opacity: .5;
+  cursor: not-allowed !important;
+}
+
+.app {
+  background-color: $bg-color;
+  padding-bottom: 50px;
+  min-height: 100vh;
+}
+
+form {
+  .input {
+    margin-bottom: 30px;
+
+    &.password {
+      position: relative;
+
+      input {
+        letter-spacing: 5px;
+        padding-right: 40px;
+      }
+
+      .icons {
+        cursor: pointer;
+        color: $text-color;
+        position: absolute;
+        right: 10px;
+        top: 11px;
+
+      }
+    }
+
+    #selector {
+      text-transform: capitalize;
+    }
+
+    input,
+    #selector {
+      width: 100%;
+      border: 1px solid #E0E1E3;
+      border-radius: 7px;
+      height: 45px;
+      padding: 10px;
+      font-size: 17px;
+      color: #0000009e;
+      appearance: none;
+
+      &::placeholder {
+        opacity: .5;
+        letter-spacing: 1px;
+      }
+
+      &:focus {
+        outline: 2px solid $main-color-lit;
+        border: none;
+      }
+    }
+  }
+
+  .action {
+    max-width: 250px;
+    margin: auto;
+
+    button {
+      width: 100%;
+      background-color: transparent;
+      border: none;
+      color: white;
+      background-color: $main-color;
+      padding: 10px 10px;
+      border-radius: 7px;
+      font-size: 17px;
+      box-shadow: 0px 0px 6px 1px rgb(0 0 0 / 8%);
+      cursor: pointer;
+      height: 40px;
+
+      img {
+        height: 20px;
+      }
+    }
+  }
+
+}
+
+.clock {
+  .container-clock {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    padding: 10px 5px 0;
+
+    .time {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      flex-wrap: nowrap;
+      letter-spacing: 2px;
+
+      .column {
+        font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+        font-weight: 400;
+        font-size: 2.2rem;
+        line-height: 1.167;
+        color: rgba(0, 0, 0, 0.6);
+      }
+
+      .hours,
+      .minutes,
+      .am,
+      .pm {
+        cursor: pointer;
+      }
+
+
+      span.text {
+        margin: 0;
+        font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+        font-weight: 400;
+        font-size: 2.2rem;
+        line-height: 1.167;
+        letter-spacing: 0em;
+        -webkit-transition: color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+        transition: color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+        color: rgba(0, 0, 0, 0.6);
+        letter-spacing: 2px;
+
+        &.clicked {
+          color: $main-color;
+        }
+      }
+
+      .AM-PM {
+        margin-left: 10px;
+
+        .pm {
+          margin-top: 4px;
+        }
+
+        span.text {
+          font-size: 17px;
+        }
+      }
+    }
+  }
+}

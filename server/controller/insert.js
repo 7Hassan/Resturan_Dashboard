@@ -108,8 +108,6 @@ const select = async (data) => {
 
 exports.insertTable = catchError(async (req, res, next) => {
   const tableName = req.body.table?.toUpperCase()
-  // Generate a random UUID (v4)
-  console.log(req.body)
   const query = `SELECT * FROM ${tableName}`;
   await select(req.body)
   const data = await executeQuery(query);

@@ -119,7 +119,7 @@ async function updateFoodItem(updates, _id) {
 async function queryFun(updates, _id) {
       const tableName = updates.table?.toUpperCase();
       delete updates.table;
-
+console.log(updates)
     let setStatements = '';
 
     // Construct SET statements for each column to be updated
